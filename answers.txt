@@ -19,7 +19,7 @@ Group member C:    [...]
 **    is a small constant - that is, there is not much plagiarised text.
 ******************************************************************************/
 
-[...]
+D^2 * K^2 = N^2 ty N = D*K
 
 
 /******************************************************************************
@@ -28,7 +28,9 @@ Group member C:    [...]
 **    Explain very briefly why.
 *******************************************************************************/
 
-[...]
+The process of running the medium directory took around 2 times longer than what we expected.
+The amount of 5-grams that are similar in the medium directory is more compared to the small (more plagiarised text)
+and therefore the constant we assume to be small is of more importance in the medium directory.
 
 
 /******************************************************************************
@@ -36,7 +38,10 @@ Group member C:    [...]
 **    the 'huge' directory? Show your calculations.
 *******************************************************************************/
 
-[...]
+In theory, going through the huge directory would take about 100 times longer than the medium directory.
+Since our medium search took around 267 seconds, our huge search would 26700 seconds, or 445 minutes.
+The result could differ depending how the plagiarised constant varies, but it can't really be calculated in a
+proper manner.
 
 
 /******************************************************************************
