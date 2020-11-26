@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.stream.Stream;
 import java.nio.file.*;
 import java.io.*;
@@ -81,14 +82,21 @@ public class Lab3 {
     // Phase 2: build index of n-grams (not implemented yet)
     static BST<Ngram, ArrayList<Path>> buildIndex(BST<Path, Ngram[]> files) {
         BST<Ngram, ArrayList<Path>> index = new BST<>();
+
         for (Path path: files.keys()) {
             for (Ngram ngram1: files.get(path)) {
-
-                index.get(ngram1.)
-                index.put(ngram1, path);
+                if(index.get(ngram1) == null){
+                    ArrayList<Path> n = new ArrayList<>();
+                    n.add(path);
+                    index.put(ngram1, n);
+                }
+                else {
+                    ArrayList<Path> n = index.get(ngram1);
+                    n.add(path);
+                    index.put(ngram1, n);
+                }
             }
 
-            index.put(files.get(path)., );
         }
 
         // TO DO: build index of n-grams
@@ -101,13 +109,13 @@ public class Lab3 {
         // N.B. Path is Java's class for representing filenames
         // PathPair represents a pair of Paths (see PathPair.java)
         BST<PathPair, Integer> similarity = new BST<>();
-        for (Path path1: files.keys()) {
-            for (Path path2: files.keys()) {
-                if (path1.equals(path2)) continue;
-                for (Ngram ngram1: files.get(path1)) {
-                    for (Ngram ngram2: files.get(path2)) {
-                        if (ngram1.equals(ngram2)) {
-                            PathPair pair = new PathPair(path1, path2);
+        for (Ngram ngram: index.keys()) {
+            ArrayList<Path> n = index.get(ngram);
+            if (n.size() > 1){
+                for (int i = 0; i < n.size(); i++) {
+                    for(int k = 0; k < n.size(); k++){
+                        if(i != k) {
+                            PathPair pair = new PathPair(n.get(i), n.get(k));
 
                             if (!similarity.contains(pair))
                                 similarity.put(pair, 0);
@@ -118,6 +126,21 @@ public class Lab3 {
                 }
             }
         }
+
+
+               /* for (Ngram ngram1: files.get(path1)) {
+                    for (Ngram ngram2: files.get(path2)) {
+                        if (ngram1.equals(ngram2)) {
+                            PathPair pair = new PathPair(path1, path2);
+
+                            if (!similarity.contains(pair))
+                                similarity.put(pair, 0);
+
+                            similarity.put(pair, similarity.get(pair)+1);
+                        }
+                    }
+                }*/
+
 
         return similarity;
     }

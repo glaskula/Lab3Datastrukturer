@@ -50,8 +50,12 @@ proper manner.
 ** 4. Which of the trees usually become unbalanced?
 ******************************************************************************/
 
-[...]
-
+When ran on Big:
+  files: BST, size 953, height 952
+  index: BST, size 2067059, height 66
+  similarity: BST, size 54324, height 102
+Here we can see that files has a large height compared to size, 1:1 ratio. Index and similarity are much more balanced.
+Especially index which has size 2067059 and height 66
 
 /******************************************************************************
 ** 5 (optional). Is there a simple way to stop these trees becoming unbalanced?
