@@ -1,3 +1,4 @@
+import javax.sound.midi.SysexMessage;
 import java.util.NoSuchElementException;
 import java.util.ArrayList;
 
@@ -132,13 +133,19 @@ public class ScapegoatTree<Key extends Comparable<Key>, Value> {
         // Read the lab instructions for more hints!
         if (cmp < 0) {
             // key is less than node.key
+            put(node.left,key,val);
         } else if (cmp > 0) {
-            // key is greater than node.key
+            // key is greater than node
+            put(node.right,key,val);
         } else {
             // key is equal to node.key
+            node.val=val;
         }
-
-        throw new UnsupportedOperationException();
+        node.size=1+size(node.left) + size(node.right);
+        if(!isBalanced()){
+            rebuild(root);
+        }
+        return node;
     }
 
     // Rebuild a tree to make it perfectly balanced.
@@ -157,7 +164,15 @@ public class ScapegoatTree<Key extends Comparable<Key>, Value> {
     private void inorder(Node node, ArrayList<Node> nodes) {
         // TO DO: use in-order traversal to store 'node' and all
         // descendants into 'nodes' ArrayList
-        throw new UnsupportedOperationException();
+        if(node==null){
+            return;
+        }
+        inorder(node.left, nodes);
+        nodes.add(node);
+        inorder(node.right, nodes);
+        nodes.add(node);
+
+
     }
 
     // Given an array of nodes, and two indexes 'lo' and 'hi',
@@ -170,6 +185,13 @@ public class ScapegoatTree<Key extends Comparable<Key>, Value> {
         // Midpoint of subarray.
         int mid = (lo+hi)/2;
 
+        Node left = balanceNodes(nodes,lo,mid-1);
+        Node right = balanceNodes(nodes,mid+1,hi);
+        Node middle = nodes.get(mid);
+        middle.left=left;
+        middle.right=right;
+        middle.size=(size(left)+size(right)+1);
+        middle.height=(Integer.max(height(left),height(right)));
         // TO DO: finish this method.
         //
         // The algorithm uses divide and conquer. Here is how it
@@ -185,7 +207,7 @@ public class ScapegoatTree<Key extends Comparable<Key>, Value> {
         // (4) Correctly set the 'size' and 'height' fields for the
         //      node.
         // (5) Return the node!
-        throw new UnsupportedOperationException();
+        return middle;
     }
 
     // Returns log base 2 of a number.
