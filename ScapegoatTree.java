@@ -133,17 +133,19 @@ public class ScapegoatTree<Key extends Comparable<Key>, Value> {
         // Read the lab instructions for more hints!
         if (cmp < 0) {
             // key is less than node.key
-            put(node.left,key,val);
+            node.left= put(node.left,key,val);
         } else if (cmp > 0) {
             // key is greater than node
-            put(node.right,key,val);
+            node.right= put(node.right,key,val);
         } else {
             // key is equal to node.key
             node.val=val;
         }
+
         node.size=1+size(node.left) + size(node.right);
-        if(!isBalanced()){
-            rebuild(root);
+        node.height=1+Integer.max(height(node.left),height(node.right));
+        if((node.height > alpha * log2(node.size))){
+            node = rebuild(node);
         }
         return node;
     }
@@ -170,8 +172,6 @@ public class ScapegoatTree<Key extends Comparable<Key>, Value> {
         inorder(node.left, nodes);
         nodes.add(node);
         inorder(node.right, nodes);
-        nodes.add(node);
-
 
     }
 
@@ -191,7 +191,7 @@ public class ScapegoatTree<Key extends Comparable<Key>, Value> {
         middle.left=left;
         middle.right=right;
         middle.size=(size(left)+size(right)+1);
-        middle.height=(Integer.max(height(left),height(right)));
+        middle.height=(1+Integer.max(height(left),height(right)));
         // TO DO: finish this method.
         //
         // The algorithm uses divide and conquer. Here is how it

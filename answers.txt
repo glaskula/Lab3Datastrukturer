@@ -4,10 +4,10 @@
 ** Lab 3: Plagiarism detection
 *******************************************************************************/
 
-Name of lab group: [...]
-Group member A:    [...]
-Group member B:    [...]
-Group member C:    [...]
+Name of lab group: Grupp 2
+Group member A:    Victor Cousin
+Group member B:    Philip Lindström Rabia
+Group member C:    Oscar Wallin
 
 
 /******************************************************************************
@@ -72,7 +72,9 @@ Especially index which has size 2067059 and height 66
 **    that occur in more than one file.
 ******************************************************************************/
 
-[...]
+buildIndex is D*K*Log(N) = N * Log(N)
+findSimilarity is N * Log(N), because the number of 5 grams that occur in more than one file is constant.
+Total = O(N * Log(N) + N * Log(N)) = O(2*N * Log(N))= O(N * Log(N))
 
 
 /******************************************************************************
@@ -90,16 +92,16 @@ Especially index which has size 2067059 and height 66
 ** A. Approximately how many hours did you spend on the assignment?
 ******************************************************************************/
 
-[..group member..]:  [..hours..]
-[..group member..]:  [..hours..]
-[..group member..]:  [..hours..]
+[Victor]:  [7-8 hours]
+[Oscar]:  [6-7 hours]
+[Philip]:  [7-8 hours]
 
 
 /******************************************************************************
 ** B. Are there any known bugs / limitations?
 ******************************************************************************/
 
-[...]
+From the document sets that we have been given, we haven't found any noticeable bugs or limitations.
 
 
 /******************************************************************************
@@ -109,14 +111,14 @@ Especially index which has size 2067059 and height 66
 **    may have used in creating your design.
 ******************************************************************************/
 
-[...]
+No, we did not collaborate with any students.
 
 
 /******************************************************************************
 ** D. Describe any serious problems you encountered.                    
 ******************************************************************************/
 
-[...]
+No serious problems for this lab
 
 
 /******************************************************************************
@@ -125,5 +127,4 @@ Especially index which has size 2067059 and height 66
 **    from doing the assignment, and whether you enjoyed it.                                             
 ******************************************************************************/
 
-[...]
 

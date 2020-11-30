@@ -88,12 +88,12 @@ public class Lab3 {
                 if(index.get(ngram1) == null){
                     ArrayList<Path> n = new ArrayList<>();
                     n.add(path);
-                    index.put(ngram1, n);
+                    index.put(ngram1, n); //O(log N)
                 }
                 else {
                     ArrayList<Path> n = index.get(ngram1);
                     n.add(path);
-                    index.put(ngram1, n);
+                    index.put(ngram1, n); //O(log N)
                 }
             }
 
@@ -109,7 +109,7 @@ public class Lab3 {
         // N.B. Path is Java's class for representing filenames
         // PathPair represents a pair of Paths (see PathPair.java)
         ScapegoatTree<PathPair, Integer> similarity = new ScapegoatTree<>();
-        for (Ngram ngram: index.keys()) {
+        for (Ngram ngram: index.keys()) {  //N
             ArrayList<Path> n = index.get(ngram);
             if (n.size() > 1){
                 for (int i = 0; i < n.size(); i++) {
